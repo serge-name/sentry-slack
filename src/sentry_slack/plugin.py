@@ -13,7 +13,10 @@ from django.core.urlresolvers import reverse
 from django.db.models import Q
 
 from sentry import http
-from sentry.models import TagKey, TagValue
+try:
+    from sentry.models import TagKey, TagValue
+except ImportError:
+    from sentry.tagstore.legacy.models import TagKey, TagValue
 from sentry.plugins.bases import notify
 from sentry.utils import json
 from sentry.utils.http import absolute_uri
